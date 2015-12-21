@@ -36,7 +36,7 @@ function Route(path, parent) {
   this.driver   = null;
 
   var params = MoreRouting.Params(namedParams(this.compiled), this.parent && this.parent.params);
-  params.__subscribe(this._navigateToParams.bind(this));
+  //params.__subscribe(this._navigateToParams.bind(this));
   Object.defineProperty(this, 'params', {
     get: function() { return params; },
     set: function() { throw new Error('Route#params cannot be overwritten'); },
