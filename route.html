@@ -142,12 +142,12 @@ Route.prototype.partsForParams = function partsForParams(params, silent) {
  */
 Route.prototype.processPathParts = function processPathParts(parts) {
   this.parts  = parts;
-  this.active = this.matchesPathParts(parts);
+  var isActive = this.matchesPathParts(parts);
 
   // We don't want to notify of these changes; they'd be no-op noise.
   this.params.__silent = true;
 
-  if (this.active) {
+  if (isActive) {
     var keys = Object.keys(this.params);
     for (var i = 0; i < keys.length; i++) {
       delete this.params[keys[i]];
@@ -164,6 +164,8 @@ Route.prototype.processPathParts = function processPathParts(parts) {
   }
 
   delete this.params.__silent;
+//  debugger;
+  this.active = isActive;
 };
 
 Route.prototype.matchesPathParts = function matchesPathParts(parts) {
